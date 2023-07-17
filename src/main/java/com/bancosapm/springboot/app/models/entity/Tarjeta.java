@@ -1,4 +1,4 @@
-package com.JavaSpringSAPM.springboot.app.models.entity;
+package com.bancosapm.springboot.app.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
