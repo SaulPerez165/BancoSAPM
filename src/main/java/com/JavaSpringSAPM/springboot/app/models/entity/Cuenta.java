@@ -3,6 +3,9 @@ package com.JavaSpringSAPM.springboot.app.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -26,20 +29,19 @@ public class Cuenta implements Serializable{
 	private Long id;
 	
 	@Column
-	@NonNull
+	@NotEmpty
 	private String nombre;
 	
 	@Column
-	@NonNull
+	@NotNull
 	private double saldo;
 	
 	@Column(name = "numero_telefono")
 	private String numeroTelefono;
 
 	@Column(name = "dia_creacion")
-	@NonNull
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	//@Temporal(TemporalType.DATE)
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date diaCreacion;
 
 	public Long getId() {
