@@ -19,7 +19,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "cuenta")
+@Table(name = "cuentas")
 public class Cuenta implements Serializable{
 
 	private static final long serialVersionUID = 8220362807711989125L;
@@ -37,6 +37,7 @@ public class Cuenta implements Serializable{
 	private double saldo;
 	
 	@Column(name = "numero_telefono")
+	@NotEmpty
 	private String numeroTelefono;
 
 	@Column(name = "dia_creacion")

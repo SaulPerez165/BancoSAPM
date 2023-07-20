@@ -15,7 +15,7 @@ public class CuentaController {
 	@Autowired
 	private ICuentaDao cuentaDao;
 
-	@RequestMapping(value="/lista", method = RequestMethod.GET)
+	@RequestMapping(value="lista", method = RequestMethod.GET)
 	public String cuentaLista(Model model) {
 		model.addAttribute("titulo", "Lista de cuentas");
 		model.addAttribute("cuentas", cuentaDao.findAll());
