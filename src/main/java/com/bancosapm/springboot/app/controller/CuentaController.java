@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bancosapm.springboot.app.models.dao.ICuentaDao;
 import com.bancosapm.springboot.app.models.entity.Cuenta;
@@ -53,16 +54,28 @@ public class CuentaController {
 	}
 	
 	@RequestMapping(value = "form-cuenta", method = RequestMethod.POST)
-	public String guardar(@Valid Cuenta cuenta, BindingResult result, Model model, SessionStatus status) {
+	public String guardar(@Valid Cuenta cuenta, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash) {
 		if(result.hasErrors()) {
-			model.addAttribute("titulo", "Formulario la cuenta");
+			model.addAttribute("titulo", "Llene correctamente los campos");
+			model.addAttribute("result", result.hasErrors());
+			model.addAttribute("mensaje", "Error al enviar los datos, por favor escriba correctamente los campos");
 			return "form-cuenta";
+		} else {
+			model.addAttribute("result", false);
 		}
 		
-		cuentaDao.save(cuenta);
+		model.addAttribute("titulo", "Formulario de cuenta");
+		model.addAttribute("mensaje", "Se envio la informacion correctamente");
+		
+		try {
+			cuentaDao.save(cuenta);
+		} catch (Exception e) {
+			e.printStackTrace();
+			flash.addFlashAttribute("mensaje", e.getMessage());
+		}
 		status.setComplete();
 		
-		return "redirect:index";
+		return "redirect:form-cuenta";
 	}
 	
 	@RequestMapping(value = "eliminarcuenta/{id}")
@@ -70,7 +83,7 @@ public class CuentaController {
 		if(id > 0) {
 			cuentaDao.delete(id);
 		}
-		return "redirect:index";
+		return "index";
 	}
 
 }

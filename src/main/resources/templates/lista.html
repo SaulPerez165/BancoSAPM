@@ -8,7 +8,10 @@
 
 <body>
 	<h1 th:text="${titulo}"></h1>
-	<br>
+	<hr>
+	
+	<a th:href="@{/form-cuenta}">Registrar cuenta</a>
+	
 	<br>
 	<table>
 		<thead>
@@ -33,5 +36,8 @@
 			</tr>
 		</tbody>
 	</table>
+	
+	<a th:href="@{/}">Inicio</a>
+	
 </body>
 </html>

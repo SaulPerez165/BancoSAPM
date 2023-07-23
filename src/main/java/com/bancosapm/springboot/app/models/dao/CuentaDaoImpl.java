@@ -20,7 +20,6 @@ public class CuentaDaoImpl implements ICuentaDao {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Cuenta> findAll() {
-		// TODO Auto-generated method stub
 		return em.createQuery("from Cuenta").getResultList();
 	}
 
@@ -35,11 +34,13 @@ public class CuentaDaoImpl implements ICuentaDao {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Cuenta findOne(Long id) {
 		return em.find(Cuenta.class, id);
 	}
 
 	@Override
+	@Transactional
 	public void delete(Long id) {
 		em.remove(findOne(id));
 	}
