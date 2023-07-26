@@ -41,8 +41,8 @@ public class Cuenta implements Serializable{
 	private String numeroTelefono;
 
 	@Column(name = "dia_creacion")
-	//@Temporal(TemporalType.DATE)
-	//@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date diaCreacion;
 
 	public Long getId() {

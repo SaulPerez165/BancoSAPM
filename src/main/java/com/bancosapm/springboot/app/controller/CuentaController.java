@@ -59,6 +59,7 @@ public class CuentaController {
 			model.addAttribute("titulo", "Llene correctamente los campos");
 			model.addAttribute("result", result.hasErrors());
 			model.addAttribute("mensaje", "Error al enviar los datos, por favor escriba correctamente los campos");
+			System.out.println(result.toString());
 			return "form-cuenta";
 		} else {
 			model.addAttribute("result", false);
